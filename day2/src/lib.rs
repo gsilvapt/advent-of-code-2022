@@ -32,29 +32,23 @@ pub enum Shape {
 
 impl Shape {
     pub fn reverse_shape_finder(result: &Draws, oppo: &Self) -> Self {
-        // reverse_shape_finder checks the output from result and the opponent play, returning 
+        // reverse_shape_finder checks the output from result and the opponent play, returning
         // the Shape that would lead to that result.
         match oppo {
-            Shape::Rock => {
-                match result {
-                    Draws::Win => Shape::Paper,
-                    Draws::Loss => Shape::Scissor,
-                    Draws::Draw => Shape::Rock,
-                }
+            Shape::Rock => match result {
+                Draws::Win => Shape::Paper,
+                Draws::Loss => Shape::Scissor,
+                Draws::Draw => Shape::Rock,
             },
-            Shape::Paper => {
-                match result {
-                    Draws::Win => Shape::Scissor,
-                    Draws::Loss => Shape::Rock,
-                    Draws::Draw => Shape::Paper,
-                }
+            Shape::Paper => match result {
+                Draws::Win => Shape::Scissor,
+                Draws::Loss => Shape::Rock,
+                Draws::Draw => Shape::Paper,
             },
-            Shape::Scissor => {
-                match result {
-                    Draws::Win => Shape::Rock,
-                    Draws::Loss => Shape::Paper,
-                    Draws::Draw => Shape::Scissor,
-                }
+            Shape::Scissor => match result {
+                Draws::Win => Shape::Rock,
+                Draws::Loss => Shape::Paper,
+                Draws::Draw => Shape::Scissor,
             },
         }
     }

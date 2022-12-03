@@ -1,4 +1,4 @@
-use day2::{Draws, Shape, to_shapes};
+use day2::{to_shapes, Draws, Shape};
 use std::env;
 use std::fs;
 
@@ -28,15 +28,15 @@ fn part2(input: &str) -> i32 {
             )
         })
         .collect();
-    
+
     draws
         .iter()
         .map(|d| {
             let oppo = match Shape::into_shape(d.0) {
                 Ok(v) => v,
-                Err(e) => panic!("failed converting into shape: {}", e)
-            }; 
-            
+                Err(e) => panic!("failed converting into shape: {}", e),
+            };
+
             let desired_res = Draws::from_char(d.1);
             let ours = Shape::reverse_shape_finder(&desired_res, &oppo);
             ours.score(&oppo)
@@ -45,13 +45,13 @@ fn part2(input: &str) -> i32 {
 }
 
 #[cfg(test)]
-mod tests {
+mod test {
     use super::*;
 
     #[test]
     fn computes_scores_correctly() {
         const ACTUAL: i32 = 15;
-       let expected: i32 = part1("test_input");
+        let expected: i32 = part1("test_input");
 
         assert_eq!(expected, ACTUAL);
     }
