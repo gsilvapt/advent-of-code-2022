@@ -1,0 +1,34 @@
+use std::env;
+use std::fs;
+
+use day3::score_uniques;
+
+fn main() {
+    let args: Vec<String> = env::args().collect();
+    match args[1].as_str() {
+        "1" => println!("[part1]: total score: {}", part1("input")),
+        //"2" => println!("[part2]: total score: {}", part2("input")),
+        _ => println!("unrecognized option"),
+    };
+}
+
+fn part1(file_path: &str) -> i32 {
+    let input = fs::read_to_string(file_path).expect("failed reading file from system");
+    score_uniques(input.as_str())
+}
+
+//fn part2(file_path: &str) -> i32 {
+//    0
+//}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn computes() {
+        const ACTUAL: i32 = 157;
+        let expected: i32 = part1("test_input");
+        assert_eq!(expected, ACTUAL);
+    }
+}
